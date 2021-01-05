@@ -1,31 +1,23 @@
 {% extends 'base.html' %}
 
-{% block breadcrumb %}
-  <li class="breadcrumb-item active">Boards</li>
-{% endblock %}
-
-{% block content %}
-  <table class="table">
-    <thead class="thead-inverse">
-      <tr>
-        <th>Board</th>
-        <th>Posts</th>
-        <th>Topics</th>
-        <th>Last Post</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for board in boards %}
-        <tr>
-          <td>
-            <a href="{% url 'board_topics' board.pk %}">{{ board.name }}</a>
-            <small class="text-muted d-block">{{ board.description }}</small>
-          </td>
-          <td class="align-middle">0</td>
-          <td class="align-middle">0</td>
-          <td></td>
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+{% block body %}
+<div class="container-scroller">
+ <div class="main-panel">
+    <div class="content-wrapper">
+      {% block content %}
+        <div class="row">
+          <div class="col-md-6 grid-margin stretch-card">
+            <form action="/action_page.php">
+              <label for="w3review">ชื่อ:</label>
+                <textarea id="w3review" name="w3review" rows="1" cols="60">
+                </textarea>
+                <br><br>
+                <input type="submit" value="Submit">
+            </form>
+          </div>
+        </div>
+      {% endblock %}
+    </div>
+  </div>
+</div>   
 {% endblock %}
