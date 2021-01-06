@@ -7,7 +7,7 @@
 .center{
   position: absolute;
   top: 100%;
-  left: 50%;
+  left: 80%;
   transform: translate(-50%, -50%);
 }
 .center .stars{
@@ -45,7 +45,7 @@
   position: absolute;
   content: "";
   width: 30%;
-  left: 80%;
+  left: 65%;
   transform: translateX(-47%);
   bottom: 80px;
   font-size: 15px;
@@ -57,18 +57,33 @@
 .stars input:checked ~ .result:before{
   display: block;
 }
+.stars #ten:checked ~ .result:before{
+  content: "10";
+}
+.stars #nine:checked ~ .result:before{
+  content: "9";
+}
+.stars #eight:checked ~ .result:before{
+  content: "8";
+}
+.stars #seven:checked ~ .result:before{
+  content: "7";
+}
+.stars #six:checked ~ .result:before{
+  content: "6";
+}
 .stars #five:checked ~ .result:before{
-  content: "Excellence 😍";
+  content: "5";
 }
 .stars #four:checked ~ .result:before{
-  content: "Good 😎";
+  content: "4";
 }
 .stars #three:checked ~ .result:before{
-  content: "Fair 😄";
+  content: "3";
 }
 .stars #two:checked ~ .result:before{
-  content: "Improvement 😒";
+  content: "2";
 }
 .stars #one:checked ~ .result:before{
-  content: "Poor 😠";
+  content: "1";
 }
