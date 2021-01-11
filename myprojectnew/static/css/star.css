@@ -87,3 +87,9 @@
 .stars #one:checked ~ .result:before{
   content: "1";
 }
+
+.fullscreen-block{
+  background-color: #000000;
+  width: 100vw;
+  height: 100vh;
+}

@@ -2,14 +2,14 @@
 
 {% block content %}
   <div class="container-fluid page-body-wrapper">
-        <div class="main-panel">
-              <div class="content-wrapper">
+      <div class="main-panel">
+              <div class="content-wrapper"> 
                 <div class="row">
-                    <div class="col-md-6 grid-margin stretch-card">
-                      <form action="/action_page.php">
+                    <div class="col-12 grid-margin">
+                      <form method="POST">
+                        {% csrf_token %}
                         <label for="w3review">ชื่อ</label>
-                            <textarea id="w3review" name="w3review" rows="1" cols="60">
-                            </textarea>
+                        <input type="text" id="firstname" name="firstname">
                             <br></br>
                             <br></br>
                             <br></br>
@@ -45,12 +45,17 @@
                                   </div>
                               </div>
                             <br></br>
-                          <a align ="center" href="{% url 'ror' %}" class="btn btn-primary ml-2">Submit</a>
+                          <input type="Submit" value="Submit">
                         </form>
-                      </div>
+                        {% if mgs == 'Done' %}
+                          <label>
+                            Done
+                          </label>
+                        {% endif %}
                     </div>
+                </div>
               </div>
-        </div>
+      </div>
   </div>
 {% endblock %}
     

@@ -4,8 +4,25 @@ from .forms import NewTopicForm
 from .models import Board, Topic, Post
 
 def home(request):
+    mgs = {
+                    'massage' : ' '
+                }
+    if request.method == 'POST':
+        firstname = request.POST.get('firstname')
+        comment = request.POST.get('comment')
+        rate = request.POST.get('rate')
+        x_create = Board(
+            name = firstname,
+            description = comment,
+            star = rate
+        )
+        x_create.save()
+        mgs = {
+                    'massage' : 'Done'
+                }
+         
     boards = Board.objects.all()
-    return render(request, 'home.html', {'boards': boards})
+    return render(request, 'home.html', {'boards': boards,'mgs': mgs})
 
 def ror(request):
     print("Eieiza55+")
