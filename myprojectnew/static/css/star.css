@@ -7,7 +7,7 @@
 .center{
   position: absolute;
   top: 100%;
-  left: 80%;
+  left: 30%;
   transform: translate(-50%, -50%);
 }
 .center .stars{
@@ -85,7 +85,7 @@
   content: "2";
 }
 .stars #one:checked ~ .result:before{
-  content: "1";
+  content: "10";
 }
 
 .fullscreen-block{
