@@ -26,7 +26,8 @@ def home(request):
 
 def ror(request):
     print("Eieiza55+")
-    return render(request, 'ror.html')
+    boards = Board.objects.all()
+    return render(request, 'ror.html', {'boards': boards})
 
 def about(request):
     # do something...

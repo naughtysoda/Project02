@@ -1,9 +1,41 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class="content-wrapper">
-            <div class="page-header">
-              <h3 class="page-title"> Hello Buttom </h3>
-            </div>
+<div class="content-wrapper">
+<div class="container">
+      <ol class="breadcrumb my-4">
+        <li class="breadcrumb-item active">แสดงข้อมูล </li>
+      </ol>
+      <table class="table">
+        <thead class="thead-inverse">
+          <tr>
+            <th>ID</th>
+            <th>Firstname</th>
+            <th>Description</th>
+            <th>Rate</th>
+            <th>Edit</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for board in boards %}
+            <tr>
+              <td>
+                {{ board.id }}
+              </td>            
+              <td>
+                {{ board.name }}
+              </td>
+              <td>
+                {{ board.description }}
+              </td>
+              <td>
+                {{ board.star }}
+              </td>
+              <td><a href="{% url 'ror' %}" class="btn btn-primary ml-2">Edit</a></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
     </div>
+  </div>
 {% endblock %}
