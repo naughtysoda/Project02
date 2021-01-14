@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import NewTopicForm
 from .models import Board, Topic, Post
+from django.views.generic import UpdateView
 
 def home(request):
     mgs = {
@@ -64,3 +65,4 @@ def new_topic(request, pk):
     else:
         form = NewTopicForm()
     return render(request, 'new_topic.html', {'board': board, 'form': form})
+
