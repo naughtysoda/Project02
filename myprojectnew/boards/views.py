@@ -24,10 +24,13 @@ def home(request):
     boards = Board.objects.all()
     return render(request, 'home.html', {'boards': boards,'mgs': mgs})
 
-def ror(request):
-    print("Eieiza55+")
+def table(request):
     boards = Board.objects.all()
-    return render(request, 'ror.html', {'boards': boards})
+    return render(request, 'table.html', {'boards': boards})
+
+def edit(request):
+    boards = Board.objects.all()
+    return render(request, 'edit.html', {'boards': boards})
 
 def about(request):
     # do something...
