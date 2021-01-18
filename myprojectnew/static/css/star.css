@@ -85,7 +85,7 @@
   content: "2";
 }
 .stars #one:checked ~ .result:before{
-  content: "10";
+  content: "1";
 }
 
 .fullscreen-block{
