@@ -8,21 +8,16 @@
                   <div class="card-body">
                     <h4 class="card-title">แก้ไขข้อมูล</h4>
                     <p class="card-description"> </p>
-                      <form method="POST">
+                      <form action="/edit/{{table_to_update.id}}" method="POST">
                         {% csrf_token %}
                       <div class="form-group">
                         <label for="InputName">Name</label>
-                        <input type="text" id="firstname" name="firstname" class="form-control" placeholder="ชื่อ">
+                        <input type="text" id="firstname" name="firstname" class="form-control" placeholder="ชื่อ" value="{{table_to_update.firstname}}"  >
                       </div>
                         <div class="form-group">
                           <input type="Change" value="Change" class="btn btn-gradient-success btn-fw">
                         </div>
-                        </form>
-                        {% if mgs.massage == 'Done' %}
-                          <script>
-                            alert("Done!")
-                          </script>
-                        {% endif %}
+                      </form>
                     </div>
                 </div>
                 </div>
