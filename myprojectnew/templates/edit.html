@@ -2,14 +2,14 @@
 
 {% block content %}
               <div class="content-wrapper"> 
+                <form method="POST">
+                {% csrf_token %}
                 <div class="row">
-                <div class="col-10 grid-margin stretch-card">
+                <div class="col-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">แก้ไขข้อมูล</h4>
+                    <h4 class="card-title">กรอกข้อมูล</h4>
                     <p class="card-description"> </p>
-                      <form method="POST">
-                        {% csrf_token %}
                       <div class="form-group">
                         <label for="InputName">Name</label>
                         <input type="text" id="firstname" name="firstname" class="form-control" placeholder="ชื่อ" value="{{ boards.firstname }}">
@@ -21,13 +21,13 @@
                             <br></br>
                       <div class="form-group">
                             <label for="InputComment">Comment</label>
-                            <textarea id="comment" name="comment" class="form-control" rows="5" cols="60">{{ boards.description }}
+                            <textarea id="comment" name="comment" class="form-control" rows="5" cols="60"> {{ boards.description }}
                             </textarea>
                       </div>
-                      <div class="form-group">
-                        <br></br>
-                        <br></br>
+                      <br></br>
+                              <div class="form-group">
                                  <div class="center">
+                                  <label for="InputStar">Star point </label>
                                   <div class="stars">
                                     <input type="radio" id="ten" name="rate" value="10">
                                     <label for="ten"></label>
@@ -52,14 +52,16 @@
                                     <span class="result"></span>
                                   </div>
                                 </div>
-                      </div>
-                        <div class="form-group">
-                          <input type="Submit" value="Change" class="btn btn-gradient-success btn-fw">
-                        </div>
-                      </form>
+                              </div>
                     </div>
                 </div>
                 </div>
+                <div class="col-6 grid-margin stretch-card">
+                        <div class="form-group">  
+                          <input type="Submit" value="Change" class="btn btn-gradient-success btn-fw">
+                        </div>
                 </div>
+                </div>
+                </from>
               </div>
 {% endblock %}
