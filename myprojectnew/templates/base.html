@@ -44,7 +44,7 @@
            <span class="navbar-toggler-icon"></span>
          </button>
          </div class="collapse navbar-collapse" id="mainMenu">
-           {% if user.is_authenticated %}
+           {% comment %} {% if user.is_authenticated %}
              <ul class="navbar-nav ml-auto">
                <li class="nav-item dropdown">
                  <a class="nav-link dropdown-toggle" href="#" id="userMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -58,11 +58,11 @@
                  </div>
                </li>
              </ul>
-           {% else %}
-             <a href="{% url 'table' %}" class="btn btn-gradient-primary btn-fw">1</a>
+           {% else %} {% endcomment %}
+             <a href="{% url 'table' %}" class="btn btn-gradient-primary btn-fw">ข้อมูลการประเมิณ</a>
              <a href="{% url 'table' %}" class="btn btn-gradient-secondary btn-fw">2</a>
              <a href="{% url 'table' %}" class="btn btn-gradient-dark btn-fw">3</a>
-           {% endif %}
+           {% comment %} {% endif %} {% endcomment %}
           </div>
         </div>
      </nav>
@@ -71,6 +71,12 @@
 
        {% block content %}
        {% endblock %}
+       <footer class="footer">
+            <div class="d-sm-flex justify-content-center justify-content-sm-between">
+              <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Make by Captain</span>
+              <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="mdi mdi-heart text-danger"></i></span>
+            </div>
+          </footer>
      </div>
     {% endblock body %}
     <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
