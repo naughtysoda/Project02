@@ -43,6 +43,10 @@ def edit(request,Progress_ID):
         return redirect('table')
     return render(request, 'edit.html',{'boards':boards})
 
+def chart(request):
+    # do something...
+    return render(request, 'chart.html')
+
 def about(request):
     # do something...
     return render(request, 'about.html')

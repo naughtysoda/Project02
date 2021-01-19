@@ -33,4 +33,5 @@ urlpatterns = [
     # url(r'^boards/(?P<pk>\d+)/new/$', views.new_topic, name='new_topic'),
     url(r'^admin/', admin.site.urls),
     path('edit<int:Progress_ID>', views.edit, name='edit'),
+    url(r'^chart/$', views.chart, name='chart'),
 ]
