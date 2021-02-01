@@ -17,4 +17,19 @@
     </div>
 </div>
 
+<script>
+    $.ajax({
+    type: "POST",
+    url: '{% url "chart_data" %}',
+    data:  {'Board': firstname,
+    dataType: 'json',
+   success: function (data) {
+      if (data.is_taken) {
+         document.getElementById('Board').value = data['firstname'];
+            console.log(data['firstname'])
+            }
+            }
+  });
+</script>
+
 {% endblock %}

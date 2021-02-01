@@ -8,7 +8,7 @@ $(function () {
     labels: ["2013", "2014", "2014", "2015", "2016", "2017"],
     datasets: [{
       label: 'Star Point',
-      data: [10, 19, 3, 5, 2, 3], 
+      data: [1, 10, 20, 25, 35, 40], 
       backgroundColor: [
         'rgba(255, 99, 132, 0.2)',
         'rgba(54, 162, 235, 0.2)',
@@ -29,11 +29,13 @@ $(function () {
       fill: false
     }]
   };
+
+
   var dataDark = {
-    labels: ["2013", "2014", "2014", "2015", "2016", "2017"],
+    labels: ["2012", "2014", "2014", "2015", "2016", "2017"],
     datasets: [{
       label: 'Star Point',
-      data: [10, 19, 3, 5, 2, 3],
+      data: [15, 10, 20, 30, 40, 45],
       backgroundColor: [
         'rgba(255, 99, 132, 0.2)',
         'rgba(54, 162, 235, 0.2)',
@@ -54,6 +56,8 @@ $(function () {
       fill: false
     }]
   };
+
+
   var multiLineData = {
     labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
     datasets: [{

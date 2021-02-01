@@ -34,4 +34,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     path('edit<int:Progress_ID>', views.edit, name='edit'),
     url(r'^chart/$', views.chart, name='chart'),
+    url(r'^ajax/chart_data/$', views.chart_data, name='chart_data'),
 ]

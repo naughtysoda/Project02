@@ -47,6 +47,10 @@ def chart(request):
     # do something...
     return render(request, 'chart.html')
 
+def chart_data(request):
+    data = Board.objects.all()
+    return JsonResponse(data)
+
 def about(request):
     # do something...
     return render(request, 'about.html')
