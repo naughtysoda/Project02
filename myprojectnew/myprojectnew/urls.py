@@ -21,10 +21,11 @@ from django.urls import path
 
 from accounts import views as accounts_views
 from boards import views
+from boards.views import ChartView
 
 urlpatterns = [
     url(r'^$', views.home, name='home'),
-    url(r'^signup/$', accounts_views.signup, name='signup'),
+    # url(r'^signup/$', accounts_views.signup, name='signup'),
     url(r'^login/$', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     url(r'^table/$', views.table, name='table'),
     # url(r'^edit/$', views.edit, name='edit'),
@@ -33,6 +34,7 @@ urlpatterns = [
     # url(r'^boards/(?P<pk>\d+)/new/$', views.new_topic, name='new_topic'),
     url(r'^admin/', admin.site.urls),
     path('edit<int:Progress_ID>', views.edit, name='edit'),
-    url(r'^chart/$', views.chart, name='chart'),
-    url(r'^ajax/chart_data/$', views.chart_data, name='chart_data'),
+    # url(r'^chart/$', views.chart, name='chart'),
+    # url(r'^ajax/chart_data/$', views.chart_data, name='chart_data'),
+    url(r'chart/$',ChartView.as_view(), name='chart'),
 ]

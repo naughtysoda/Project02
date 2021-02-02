@@ -1,9 +1,18 @@
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import NewTopicForm
-from .models import Board, Topic, Post
+from .models import Board
 from django.views.generic import UpdateView
+from django.views.generic import TemplateView
 from django.urls import path
+
+class ChartView(TemplateView):
+    template_name = 'chart.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["qs"] = Board.objects.all().order_by('-star')
+       
+        return context
 
 def home(request):
     mgs = {
@@ -46,10 +55,6 @@ def edit(request,Progress_ID):
 def chart(request):
     # do something...
     return render(request, 'chart.html')
-
-def chart_data(request):
-    data = Board.objects.all()
-    return JsonResponse(data)
 
 def about(request):
     # do something...

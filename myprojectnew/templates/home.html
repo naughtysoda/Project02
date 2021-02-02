@@ -1,5 +1,16 @@
 {% extends 'base.html' %}
-
+{% comment %} <head>
+    <script>
+    alert("Done!");
+    function ValidateNumeric() {
+      
+      var val = document.getElementById("value").value;
+      var validChars = '1'; 
+      if val < validChars
+        return true; 
+    }
+                      </script>
+</head> {% endcomment %}
 {% block content %}
               <div class="content-wrapper"> 
                 <form method="POST">
@@ -21,8 +32,7 @@
                             <br></br>
                       <div class="form-group">
                             <label for="InputComment">Comment</label>
-                            <textarea id="comment" name="comment" class="form-control" rows="5" cols="60">
-                            </textarea>
+                            <textarea id="comment" name="comment" class="form-control" rows="5" cols="60"></textarea>
                       </div>
                       <br></br>
                               <div class="form-group">
@@ -47,7 +57,7 @@
                                     <label for="three"></label>
                                     <input type="radio" id="two" name="rate" value="2">
                                     <label for="two"></label>
-                                    <input type="radio" id="one" name="rate" value="1">
+                                    <input type="radio" id="one" name="rate" value="1"required>
                                     <label for="one"></label>
                                     <span class="result"></span>
                                   </div>
@@ -58,14 +68,29 @@
                 </div>
                 <div class="col-6 grid-margin stretch-card">
                         <div class="form-group">  
-                          <input type="Submit" value="Submit" class="btn btn-gradient-success btn-fw">
+                          <input type="submit" id="submit" class="btn btn-gradient-success btn-fw" name="submit" value="Submit">
                         </div>  
                 </div>
-                      {% if mgs.massage == 'Done'%}
-                      <script>
-                      alert("Done!");
-                      </script>
-                      {%endif%}
+                <script>
+                    
+                        $("#submit").click(function() {  
+                        
+                            if($('input[type=radio][name=rate]:checked').length == 0)
+                            {
+                              alert("Please give star");
+                              document.getElementById("one").focus();
+                              return false;
+                            }    
+                          
+                          });
+                        
+                </script>
+                <div>
+                        {% if mgs.massage == 'Done'%}
+                          <script> 
+                            alert("Done!");
+                          </script>
+                        {%endif%} 
                 </div>
                 </from>
               </div>

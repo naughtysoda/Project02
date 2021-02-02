@@ -1,6 +1,4 @@
 from django.contrib import admin
-from .models import Board,Topic,Post
+from .models import Board
 
 admin.site.register(Board)
-admin.site.register(Topic)
-admin.site.register(Post)

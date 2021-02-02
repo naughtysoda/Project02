@@ -1,8 +1,54 @@
 {% extends 'base.html' %}
 
+{% comment %} <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> {% endcomment %}
+{% block script %}
+<script>
+        $(document).ready(function(){
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: [{% for item in qs %}'{{item.firstname}}',{% endfor %}],
+                    datasets: [{
+                        label: 'Star Point',
+                        data: [{% for item in qs %}'{{item.star}}',{% endfor %}],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+        });
+</script>
+{% endblock script %}
+
 {% block content %}
 
-<div class="card">
+{% comment %} <div class="card">
    <div class="card-body"><div class="chartjs-size-monitor">
    <div class="chartjs-size-monitor-expand">
    <div class="">
@@ -15,21 +61,18 @@
       <h4 class="card-title">Bar chart</h4>
          <canvas id="barChartDark" style="height: 247px; display: block; width: 494px;" width="617" height="308" class="chartjs-render-monitor"></canvas>
     </div>
+</div> {% endcomment %}
+   <div class="card-body"><div class="chartjs-size-monitor">
+   <div class="chartjs-size-monitor-expand">
+   <div class="">
+   </div>
+   </div>
+   <div class="chartjs-size-monitor-shrink"><div class="">
+   </div>
+   </div>
+   </div>
+      <h4 class="card-title">Bar chart</h4>
+        <canvas id="myChart" width="400" height="200" class="chartjs-render-monitor"></canvas>
+    </div>
 </div>
-
-<script>
-    $.ajax({
-    type: "POST",
-    url: '{% url "chart_data" %}',
-    data:  {'Board': firstname,
-    dataType: 'json',
-   success: function (data) {
-      if (data.is_taken) {
-         document.getElementById('Board').value = data['firstname'];
-            console.log(data['firstname'])
-            }
-            }
-  });
-</script>
-
 {% endblock %}
