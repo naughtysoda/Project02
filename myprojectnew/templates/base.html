@@ -46,25 +46,9 @@
            <span class="navbar-toggler-icon"></span>
          </button>
          </div class="collapse navbar-collapse" id="mainMenu">
-           {% comment %} {% if user.is_authenticated %}
-             <ul class="navbar-nav ml-auto">
-               <li class="nav-item dropdown">
-                 <a class="nav-link dropdown-toggle" href="#" id="userMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  {{ user.username }}
-                 </a>
-                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userMenu">
-                   <a class="dropdown-item" href="#">My account</a>
-                   <a class="dropdown-item" href="#">Change password</a>
-                   <div class="dropdown-divider"></div>
-                   <a class="dropdown-item" href="{% url 'logout' %}">Log out</a>
-                 </div>
-               </li>
-             </ul>
-           {% else %} {% endcomment %}
              <a href="{% url 'table' %}" class="btn btn-gradient-primary btn-fw">ข้อมูลการประเมิณ</a>
              <a href="{% url 'chart' %}" class="btn btn-gradient-secondary btn-fw">กราฟการประเมิณ</a>
              <a href="{% url 'home' %}" class="btn btn-gradient-dark btn-fw">3</a>
-           {% comment %} {% endif %} {% endcomment %}
           </div>
         </div>
      </nav>
@@ -76,8 +60,8 @@
        {% endblock %}
        <footer class="footer">
             <div class="d-sm-flex justify-content-center justify-content-sm-between">
-              <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Make by Captain</span>
-              <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="mdi mdi-heart text-danger"></i></span>
+              <span class="text-muted text-center text-sm-left d-block d-sm-inline-block"></span>
+              <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"></i></span>
             </div>
           </footer>
      </div>
