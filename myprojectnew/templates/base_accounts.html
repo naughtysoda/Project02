@@ -2,17 +2,18 @@
 
 {% load static %}
 
-{% block stylesheet %}
-    <link rel="stylesheet" href="{% static 'assets/css/demo_2/style.css.map' %}">
-    <link rel="stylesheet" href="{% static 'assets/css/demo_2/style.css' %}">
-{% endblock %}
-
 {% block body %}
   <div class="content-wrapper">
     <h1 class="text-center logo my-4">
-      <a href="{% url 'home' %}">Django Boards</a>
+      <a>The Star Login ★</a>
     </h1>
     {% block content %}
     {% endblock %}
   </div>
+    <footer class="footer">
+        <div class="d-sm-flex justify-content-center justify-content-sm-between">
+          <span class="text-muted text-center text-sm-left d-block d-sm-inline-block"></span>
+          <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"></i></span>
+        </div>
+    </footer>
 {% endblock %}
