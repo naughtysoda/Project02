@@ -4,6 +4,8 @@ from .models import Board
 from django.views.generic import UpdateView
 from django.views.generic import TemplateView
 from django.urls import path
+import datetime
+import requests, xmltodict
 
 class ChartView(TemplateView):
     template_name = 'chart.html'
@@ -65,23 +67,32 @@ def about_company(request):
     # return some data along with the view...
     return render(request, 'about_company.html', {'company_name': 'Simple Complex'})
 
-# def logintest(idm_login):
-#         Emp_id = request.POST.get('userID')
-#         passwordID = str(request.POST.get('passwordID'))
-        
-#         # check_user = Plan_Head.objects.filter(Username = userID, Password = passwordID).count()
-#         check_ID = idm_login(Emp_id,passwordID)
-#         reposeMge = check_ID
-#         if reposeMge == 'true':
-#                 nameget = idm(Emp_id)
-
 def logintest(request):
+    aerror = {
+                'x' : ' '
+                }
     if request.method == 'POST':
-        username=requset.POST['username']
-        password=requset.POST['password']
-        check_ID = idm_login(username,password)
-        print('55555555')
-    return render(request, 'logintest.html')
+        username=request.POST.get('username')
+        password=request.POST.get('password')
+        if username == '464628' or username == '501103':
+                check_ID = idm_login(username,password)
+                reposeMge = check_ID  
+                if reposeMge == 'true':
+                        nameget = idm(username)
+                        Fullname = nameget['TitleFullName']+nameget['FirstName']+' '+nameget['LastName']
+                        Position = nameget['Position']+nameget['LevelCode']+nameget['DepartmentShort']
+                        StaffDate = nameget['StaffDate'].split('/')
+                        Workage = int(StaffDate[2])-543
+                        today = datetime.datetime.today()
+                        yearBE = today.year
+                        Someyear = yearBE-Workage  
+                        print(Fullname,Position,Someyear)
+                        return redirect('home')
+        else:
+            aerror = {
+                    'x':'Invalid Credentials. Please try again.'
+                    }
+    return render(request,'logintest.html',{'aerror': aerror})        
 
 def idm_login(username, password):
     # Emp_passc = str(Emp_pass)
@@ -100,7 +111,7 @@ def idm_login(username, password):
                     </soap:Body>
                 </soap:Envelope>'''
     wskey = '07d75910-3365-42c9-9365-9433b51177c6'
-    body = xmltext.format(wskey,Emp_id,Emp_pass)
+    body = xmltext.format(wskey,username,password)
     response = requests.post(url,data=body,headers=headers)
     print(response.status_code)
     o = xmltodict.parse(response.text)
@@ -108,3 +119,26 @@ def idm_login(username, password):
     # print(o)
     authen_response = jsonconvert["soap:Envelope"]["soap:Body"]["IsValidUsernameAndPassword_SIResponse"]["IsValidUsernameAndPassword_SIResult"]["ResultObject"]
     return authen_response
+
+def idm(username):
+    url="https://idm.pea.co.th/webservices/EmployeeServices.asmx?WSDL"
+    headers = {'content-type': 'text/xml'}
+    xmltext ='''<?xml version="1.0" encoding="utf-8"?>
+                <soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+                <soap:Body>
+                    <GetEmployeeInfoByEmployeeId_SI xmlns="http://idm.pea.co.th/">
+                        <WSAuthenKey>{0}</WSAuthenKey>
+                        <EmployeeId>{1}</EmployeeId>
+                        </GetEmployeeInfoByEmployeeId_SI>
+                </soap:Body>
+                </soap:Envelope>'''
+    wsauth = 'e7040c1f-cace-430b-9bc0-f477c44016c3'
+    body = xmltext.format(wsauth,username)
+    response = requests.post(url,data=body,headers=headers)
+    o = xmltodict.parse(response.text)
+
+    # print(o)
+    jsonconvert=o["soap:Envelope"]['soap:Body']['GetEmployeeInfoByEmployeeId_SIResponse']['GetEmployeeInfoByEmployeeId_SIResult']['ResultObject']
+    employeedata = dict(jsonconvert)
+    # print(employeedata['FirstName'])
+    return employeedata

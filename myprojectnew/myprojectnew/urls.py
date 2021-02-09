@@ -27,7 +27,7 @@ urlpatterns = [
     url(r'^$', views.home, name='home'),
     # url(r'^signup/$', accounts_views.signup, name='signup'),
     # url(r'^login/$', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
-    url(r'logintest/$',views.logintest, name='logintest'),
+    path('logintest/',views.logintest, name='logintest'),
     # url(r'^logout/$', auth_views.LogoutView.as_view(), name='logout'),
     url(r'^table/$',views.table, name='table'),
     url(r'^admin/', admin.site.urls),
