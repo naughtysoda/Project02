@@ -20,6 +20,11 @@
             </div>
             <input type="submit" value="Login" class="btn btn-primary btn-block"></button>
           </form>
+          {% if aerror.x == 'Invalid Credentials. Please try again.'%}
+                    <script> 
+                        alert("ID/Password Wrong");
+                    </script>
+          {%endif%} 
         </div>
       </div>
     </div>

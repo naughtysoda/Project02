@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Board
+from .models import Board,Profile
 from django.views.generic import UpdateView
 from django.views.generic import TemplateView
 from django.urls import path
@@ -67,7 +67,7 @@ def about_company(request):
     # return some data along with the view...
     return render(request, 'about_company.html', {'company_name': 'Simple Complex'})
 
-def logintest(request):
+def logintstar(request):
     aerror = {
                 'x' : ' '
                 }
@@ -80,19 +80,34 @@ def logintest(request):
                 if reposeMge == 'true':
                         nameget = idm(username)
                         Fullname = nameget['TitleFullName']+nameget['FirstName']+' '+nameget['LastName']
-                        Position = nameget['Position']+nameget['LevelCode']+nameget['DepartmentShort']
+                        Position = nameget['Position']
+                        LevelCode = nameget['LevelCode']
+                        DepartmentShort = nameget['DepartmentShort']
+                        Sap = nameget['NewOrganizationalCode']
+                        StaffStartDate = nameget['StaffDate'].split('/')
+                        SSD = StaffStartDate[2]+"-"+StaffStartDate[1]+"-"+StaffStartDate[0]
                         StaffDate = nameget['StaffDate'].split('/')
                         Workage = int(StaffDate[2])-543
                         today = datetime.datetime.today()
                         yearBE = today.year
                         Someyear = yearBE-Workage  
-                        print(Fullname,Position,Someyear)
+                        x_create = Profile(
+                              empid = username,
+                              name = Fullname,
+                              position = Position,
+                              position_level = LevelCode,
+                              department_name = DepartmentShort,
+                              department_code = Sap,
+                              workage = SSD
+                               )
+                        x_create.save()
+                        print(Fullname,Position,LevelCode,DepartmentShort,Sap,Someyear,SSD)
                         return redirect('home')
         else:
             aerror = {
                     'x':'Invalid Credentials. Please try again.'
                     }
-    return render(request,'logintest.html',{'aerror': aerror})        
+    return render(request,'logintstar.html',{'aerror': aerror,'Profile': Profile})        
 
 def idm_login(username, password):
     # Emp_passc = str(Emp_pass)
