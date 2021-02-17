@@ -18,6 +18,7 @@ class Profile(models.Model):
     department_name = models.CharField(max_length=50,default='สังกัด') #DepartmentShort
     department_code = models.CharField(max_length=50,default='รหัสSAP') #NewOrganizationalCode
     workage = models.DateField(auto_now_add=False,null=True,default=timezone.now) #StaffDate - วันปัจจุบัน
+    pin = models.CharField(max_length=10,default='รหัสลับ')
 
 class Star(models.Model):
     comment = models.TextField()

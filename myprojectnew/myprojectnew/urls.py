@@ -28,6 +28,7 @@ urlpatterns = [
     # url(r'^signup/$', accounts_views.signup, name='signup'),
     # url(r'^login/$', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     path('',views.logintstar, name='logintstar'),
+    url(r'^pinthestar/$',views.pinthestar, name='pinthestar'),
     # url(r'^logout/$', auth_views.LogoutView.as_view(), name='logout'),
     url(r'^table/$',views.table, name='table'),
     url(r'^admin/', admin.site.urls),

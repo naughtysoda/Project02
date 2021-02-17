@@ -102,7 +102,7 @@ def logintstar(request):
                                )
                         x_create.save()
                         print(Fullname,Position,LevelCode,DepartmentShort,Sap,Someyear,SSD)
-                        return redirect('home')
+                        return redirect('pinthestar')
         else:
             aerror = {
                     'x':'Invalid Credentials. Please try again.'
@@ -157,3 +157,19 @@ def idm(username):
     employeedata = dict(jsonconvert)
     # print(employeedata['FirstName'])
     return employeedata
+
+def pinthestar(request):
+    pin = {
+                    'pin' : ' '
+                }
+    if request.method == 'POST':
+        pin = request.POST.get('pin')
+        x_create = Profile(
+            pin = pin
+        )
+        x_create.save()
+        pin = {
+                    'pin' : 'Done'
+                }
+        return redirect('home')
+    return render(request,'pinthestar.html',{'pin': pin,'Profile': Profile}) 
