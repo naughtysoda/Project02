@@ -4,6 +4,7 @@ from .models import Board,Profile
 from django.views.generic import UpdateView
 from django.views.generic import TemplateView
 from django.urls import path
+from django.db.models import Q, F, Sum
 import datetime
 import requests, xmltodict
 
@@ -12,8 +13,10 @@ class ChartView(TemplateView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["qs"] = Board.objects.all().order_by('-star')
-       
+        context["qs"] = Board.objects.values('firstname').annotate(Sum('star')).order_by('-star__sum')
+        # .order_by('-star')
+        # .values('firstname')
+        print(context)
         return context
 
 def home(request):
@@ -33,9 +36,10 @@ def home(request):
         mgs = {
                     'massage' : 'Done'
                 }
-         
+        return redirect('chart') 
     boards = Board.objects.all()
     return render(request, 'home.html', {'boards': boards,'mgs': mgs})
+    
 
 def table(request):
     boards = Board.objects.all().order_by('id')
@@ -75,6 +79,9 @@ def logintstar(request):
         username=request.POST.get('username')
         password=request.POST.get('password')
         if username == '464628' or username == '501103':
+                Pincheck = len(Profile.objects.filter(empid=username,pin=password))
+                if Pincheck == 1:
+                        return redirect('home')
                 check_ID = idm_login(username,password)
                 reposeMge = check_ID  
                 if reposeMge == 'true':
@@ -90,19 +97,28 @@ def logintstar(request):
                         Workage = int(StaffDate[2])-543
                         today = datetime.datetime.today()
                         yearBE = today.year
-                        Someyear = yearBE-Workage  
-                        x_create = Profile(
-                              empid = username,
-                              name = Fullname,
-                              position = Position,
-                              position_level = LevelCode,
-                              department_name = DepartmentShort,
-                              department_code = Sap,
-                              workage = SSD
-                               )
-                        x_create.save()
-                        print(Fullname,Position,LevelCode,DepartmentShort,Sap,Someyear,SSD)
-                        return redirect('pinthestar')
+                        Someyear = yearBE-Workage
+                        Profilecheck = len(Profile.objects.filter(empid=username,pin='รหัสลับ'))
+                        
+                        # pincheck = len(Profile.objects.filter(pin=pin))
+                        print(Profilecheck)
+                        if Profilecheck == 1:
+                            request.session['username'] = username
+                            return redirect('pinthestar')
+                        # if else Profilecheck == 1 and pin == pin:
+                        #     return redirect('home')
+                        else:
+                            x_create = Profile(
+                                empid = username,
+                                name = Fullname,
+                                position = Position,
+                                position_level = LevelCode,
+                                department_name = DepartmentShort,
+                                department_code = Sap,
+                                workage = SSD
+                                )
+                            x_create.save()
+                            return redirect('pinthestar')
         else:
             aerror = {
                     'x':'Invalid Credentials. Please try again.'
@@ -159,15 +175,16 @@ def idm(username):
     return employeedata
 
 def pinthestar(request):
+    username = request.session['username']
     pin = {
                     'pin' : ' '
                 }
     if request.method == 'POST':
         pin = request.POST.get('pin')
-        x_create = Profile(
-            pin = pin
-        )
-        x_create.save()
+        pincreate = Profile.objects.get(empid=username)
+        print(pincreate.empid)
+        pincreate.pin = pin
+        pincreate.save()
         pin = {
                     'pin' : 'Done'
                 }
