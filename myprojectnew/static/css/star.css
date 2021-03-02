@@ -44,10 +44,10 @@
 .stars .result:before{
   position: absolute;
   content: "";
-  width: 30%;
+  width: 50%;
   left: 65%;
-  transform: translateX(-47%);
-  bottom: 80px;
+  transform: translateX(-50%);
+  bottom: 110px;
   font-size: 15px;
   font-weight: 500;
   color: gold;

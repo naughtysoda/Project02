@@ -48,7 +48,15 @@
             <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
               <ul class="navbar-nav navbar-nav-right">
               {% comment %} ช่องบนใส่เมนูทางขวาได้ {% endcomment %}
+                  <li class="nav-item nav-settings d-none d-lg-flex">
+                    <a class="nav-link" href="#">
+                      <i class="mdi mdi-format-line-spacing"></i>
+                    </a>
+                  </li>
               </ul>
+              <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="horizontal-menu-toggle">
+                  <span class="mdi mdi-menu"></span>
+              </button>
             </div>
           </div>
         </nav>
@@ -60,15 +68,21 @@
                   <i class="mdi mdi-clipboard-text menu-icon"></i>
                   <span class="menu-title">Data table</span>
                 </a>
-                {% comment %} <a href="{% url 'table' %}" class="btn btn-gradient-primary btn-lg">ข้อมูลการประเมิณ</a> {% endcomment %}
               </li>
               <li class="nav-item mega-menu">
                 <a href="{% url 'chart' %}" class="nav-link">
                   <i class="mdi mdi-chart-bar menu-icon"></i>
                   <span class="menu-title">Chart</span>
                 </a>
-                {% comment %} <a href="{% url 'chart' %}" class="btn btn-gradient-secondary btn-lg">กราฟการประเมิณ</a> {% endcomment %}
               </li>
+              <li class="nav-item"></li>
+              <li class="nav-item"></li>
+              <li class="nav-item"></li>
+              <li class="nav-item"></li>
+              <li class="nav-item"></li>
+              <li class="nav-item"></li>
+              <li class="nav-item"></li>
+              <li class="nav-item"></li>
             </ul>
           </div>
         </nav>
@@ -87,7 +101,7 @@
           <footer class="footer">
             <div class="container">
               <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2017 <a href="https://www.bootstrapdash.com/" target="_blank">BootstrapDash</a>. All rights reserved.</span>
+                <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Captain</span>
                 <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="mdi mdi-heart text-danger"></i></span>
               </div>
             </div>
