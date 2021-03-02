@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>{% block title %}The Star ★{% endblock %}</title>
     <link href="https://fonts.googleapis.com/css?family=Peralta" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'assets/css/demo_2/style.css.map' %}">
-    <link rel="stylesheet" href="{% static 'assets/css/demo_2/style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/demo_3/style.css.map' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/demo_3/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/star.css' %}">
     <link rel="stylesheet" href="{% static 'assets/vendors/mdi/css/materialdesignicons.min.css' %}">
     <link rel="stylesheet" href="{% static 'assets/vendors/css/vendor.bundle.base.css' %}">
@@ -33,15 +33,72 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css" integrity="sha256-aa0xaJgmK/X74WM224KMQeNQC2xYKwlAt08oZqjeF0E=" crossorigin="anonymous" />
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-
-    
     {% block stylesheet %}{% endblock %}
   </head>
   <body>
-    {% block body %}
-     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-       <div class="container">
-         <a class="navbar-brand" href="{% url 'home' %}">The Star ★</a>
+<body>
+    <div class="container-scroller">
+      <!-- partial:../../partials/_horizontal-navbar.html -->
+      <div class="horizontal-menu">
+        <nav class="navbar top-navbar col-lg-12 col-12 p-0">
+          <div class="container">
+            <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+                <a class="navbar-brand" href="{% url 'home' %}">The Star ★</a>
+            </div>
+            <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+              <ul class="navbar-nav navbar-nav-right">
+              {% comment %} ช่องบนใส่เมนูทางขวาได้ {% endcomment %}
+              </ul>
+            </div>
+          </div>
+        </nav>
+        <nav class="bottom-navbar">
+          <div class="container">
+            <ul class="nav page-navigation">
+              <li class="nav-item">
+                <a href="{% url 'table' %}" class="nav-link">
+                  <i class="mdi mdi-clipboard-text menu-icon"></i>
+                  <span class="menu-title">Data table</span>
+                </a>
+                {% comment %} <a href="{% url 'table' %}" class="btn btn-gradient-primary btn-lg">ข้อมูลการประเมิณ</a> {% endcomment %}
+              </li>
+              <li class="nav-item mega-menu">
+                <a href="{% url 'chart' %}" class="nav-link">
+                  <i class="mdi mdi-chart-bar menu-icon"></i>
+                  <span class="menu-title">Chart</span>
+                </a>
+                {% comment %} <a href="{% url 'chart' %}" class="btn btn-gradient-secondary btn-lg">กราฟการประเมิณ</a> {% endcomment %}
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <!-- partial -->
+      <div class="container-fluid page-body-wrapper">
+        <div class="main-panel">
+          <div class="content-wrapper">
+              {% block script %}
+              {% endblock script %}
+              {% block content %}
+              {% endblock content%}
+          </div>
+          <!-- content-wrapper ends -->
+          <!-- partial:../../partials/_footer.html -->
+          <footer class="footer">
+            <div class="container">
+              <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2017 <a href="https://www.bootstrapdash.com/" target="_blank">BootstrapDash</a>. All rights reserved.</span>
+                <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="mdi mdi-heart text-danger"></i></span>
+              </div>
+            </div>
+          </footer>
+          <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+         {% comment %} <a class="navbar-brand" href="{% url 'home' %}">The Star ★</a>
          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainMenu" aria-controls="mainMenu" aria-expanded="false" aria-label="Toggle navigation">
            <span class="navbar-toggler-icon"></span>
          </button>
@@ -64,8 +121,7 @@
               <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"></i></span>
             </div>
           </footer>
-     </div>
-    {% endblock body %}
+     </div> {% endcomment %}
     <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
     <script src="{% static 'js/popper.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
